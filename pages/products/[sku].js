@@ -36,7 +36,7 @@ import { useState } from 'react';
          <div className="flex-1 max-w-md border border-opacity-50 rounded-md shadow-lg p-6">
            <h2 className="text-3xl font-semibold">{props.name}</h2>
            <p>
-           <span class="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Em Estoque</span>
+           <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Em Estoque</span>
            </p>
 
            {/* Price */}
