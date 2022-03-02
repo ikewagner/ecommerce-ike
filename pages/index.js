@@ -22,7 +22,7 @@ export default function Home() {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div className="container mx-auto py-12 px-6">
+        <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {products.map(product => (
               <div
@@ -65,9 +65,8 @@ export default function Home() {
                       {formatCurrency(product.price, product.currency)}
                     </p>
                   </div>
-                  <button onClick={() => addItem(product)} className="bg-rose-500 py-2 px-4 rounded inline-flex items-center text-center text-white ">
-                  <FontAwesomeIcon icon={faCartShopping} className="w-4  " />
-                    <span>Adicionar</span>
+                  <button onClick={() => addItem(product)} className="bg-green-500 py-2 px-4 rounded inline-flex items-center text-center text-white ">
+                    <span>Em Estoque</span>
                   </button>
                 </div>
               </div>

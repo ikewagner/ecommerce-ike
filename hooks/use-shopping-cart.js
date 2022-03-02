@@ -1,64 +1,134 @@
 import React, { useContext, useReducer, useMemo } from 'react';
 
- // Reducers
- const initialCartValues = {
-   cartDetails: {},
-   cartCount: 0,
-   totalPrice: 0,
- };
+// Reducers
+const initialCartValues = {
+  cartDetails: {},
+  cartCount: 0,
+  totalPrice: 0,
+};
 
- const cartReducer = (state, action) => {
-   switch (action.type) {
-     case 'ADD_ITEM':
-       if (action?.count <= 0) break;
-       return {
-         ...state,
-         cartDetails: {
-           ...state.cartDetails,
-           [action.product.id]: action.product,
-         },
-         totalPrice: state.totalPrice + action.product.price * action.count,
-         cartCount: state.cartCount + action.count,
-       };
-     case 'REMOVE_ITEM':
-     default:
-       return state;
-   }
- };
+const addItem = (state = {}, product = null, count = 0) => {
+  if (count <= 0 || !product) return state;
 
- // Context + Provider
- const CartContext = React.createContext();
+  let entry = state?.cartDetails?.[product.sku];
 
- export const CartProvider = ({ currency = 'USD', children = null }) => {
-   const [cart, dispatch] = useReducer(cartReducer, initialCartValues);
+  // Update item
+  if (entry) {
+    entry.count += count;
+  }
+  // Add item
+  else {
+    entry = {
+      ...product,
+      count,
+    };
+  }
 
-   const contextValue = useMemo(
-     () => [
-       {
-         ...cart,
-         currency,
-       },
-       dispatch,
-     ],
-     [cart, currency]
-   );
+  return {
+    ...state,
+    cartDetails: {
+      ...state.cartDetails,
+      [product.sku]: entry,
+    },
+    cartCount: Math.max(0, state.cartCount + count),
+    totalPrice: Math.max(state.totalPrice + product.price * count),
+  };
+};
 
-   return (
-     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
-   );
- };
+const removeItem = (state = {}, product = null, count = 0) => {
+  if (count <= 0 || !product) return state;
 
- // Hook
- export const useShoppingCart = () => {
-   const [cart, dispatch] = useContext(CartContext);
+  let entry = state?.cartDetails?.[product.sku];
 
-   const addItem = (product, count = 1) =>
-     dispatch({ type: 'ADD_ITEM', product, count });
+  console.log(entry.count, count);
+  if (entry) {
+    // Remove item
+    if (count >= entry.count) {
+      const { [product.sku]: sku, ...details } = state.cartDetails;
+      return {
+        ...state,
+        cartDetails: details,
+        cartCount: Math.max(0, state.cartCount - entry.count),
+        totalPrice: Math.max(0, state.totalPrice - product.price * entry.count),
+      };
+    }
+    // Update item
+    else {
+      return {
+        ...state,
+        cartDetails: {
+          ...state.cartDetails,
+          [product.sku]: {
+            ...entry,
+            count: entry.count - count,
+          },
+        },
+        cartCount: Math.max(0, state.cartCount - count),
+        totalPrice: Math.max(0, state.totalPrice - product.price * count),
+      };
+    }
+  } else {
+    return state;
+  }
+};
 
-   const shoppingCart = {
-     ...cart,
-     addItem,
-   };
+const clearCart = (state = {}) => {
+  return initialCartValues;
+};
 
-   return shoppingCart;
- };
+const cartReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'ADD_ITEM':
+      return addItem(state, action.product, action.count);
+    case 'REMOVE_ITEM':
+      return removeItem(state, action.product, action.count);
+    case 'CLEAR_CART':
+      return clearCart(state);
+    default:
+      return state;
+  }
+};
+
+// Context + Provider
+const CartContext = React.createContext();
+
+export const CartProvider = ({ currency = 'USD', children = null }) => {
+  const [cart, dispatch] = useReducer(cartReducer, initialCartValues);
+
+  const contextValue = useMemo(
+    () => [
+      {
+        ...cart,
+        currency,
+      },
+      dispatch,
+    ],
+    [cart, currency]
+  );
+
+  return (
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
+  );
+};
+
+// Hook
+export const useShoppingCart = () => {
+  const [cart, dispatch] = useContext(CartContext);
+
+  const addItem = (product, count = 1) =>
+    dispatch({ type: 'ADD_ITEM', product, count });
+
+  const removeItem = (product, count = 1) =>
+    dispatch({ type: 'REMOVE_ITEM', product, count });
+
+  const clearCart = () => dispatch({ type: 'CLEAR_CART' });
+
+  const shoppingCart = {
+    ...cart,
+    addItem,
+    removeItem,
+    clearCart,
+  };
+
+  return shoppingCart;
+};
