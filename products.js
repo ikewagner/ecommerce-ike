@@ -1,9 +1,9 @@
 const products = [
     {
-      id: "prod_LF5BZfmFtSNjuk",
-      name: 'Kentiapalm (L)',
-      price: 3995,
-      currency: 'USD',
+      id: 'price_1KYb1WC97XWumhGrqoiKNeAX',
+      name: 'POD IGNITE V15 1500PUFF BLUE RAZZ ICE',
+      price: 9999,
+      currency: 'BRL',
       image: '/vapes/pod-1500puff-blue-razz-ice.jpg',
       rating: {
         count: 85,
