@@ -3,7 +3,10 @@ import Image from 'next/image';
 import { Rating } from '@/components/index';
 import products from 'products';
 import { useShoppingCart } from '@/hooks/use-shopping-cart';
- import { formatCurrency } from '@/lib/utils';
+import { formatCurrency } from '@/lib/utils';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Home() {
@@ -59,16 +62,12 @@ export default function Home() {
                   <div>
                     <p className="text-gray-500">Preço</p>
                     <p className="text-lg font-semibold">
-                     {formatCurrency(product.price, product.currency)}
-                   </p>
+                      {formatCurrency(product.price, product.currency)}
+                    </p>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => addItem(product)}
-                    className="border rounded-lg py-1 px-4 bg-rose-500 text-white "
-                  >
-                    Adicionar no Carrinho
+                  <button onClick={() => addItem(product)} className="bg-rose-500 py-2 px-4 rounded inline-flex items-center text-center text-white ">
+                  <FontAwesomeIcon icon={faCartShopping} className="w-4  " />
+                    <span>Adicionar</span>
                   </button>
                 </div>
               </div>
