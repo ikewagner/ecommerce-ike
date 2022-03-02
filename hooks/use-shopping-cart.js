@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useMemo } from 'react';
-
+import useLocalStorageReducer from './use-local-storage-reducer';
 // Reducers
 const initialCartValues = {
   cartDetails: {},
@@ -40,7 +40,6 @@ const removeItem = (state = {}, product = null, count = 0) => {
 
   let entry = state?.cartDetails?.[product.sku];
 
-  console.log(entry.count, count);
   if (entry) {
     // Remove item
     if (count >= entry.count) {
@@ -72,7 +71,7 @@ const removeItem = (state = {}, product = null, count = 0) => {
   }
 };
 
-const clearCart = (state = {}) => {
+const clearCart = () => {
   return initialCartValues;
 };
 
@@ -83,7 +82,7 @@ const cartReducer = (state = {}, action) => {
     case 'REMOVE_ITEM':
       return removeItem(state, action.product, action.count);
     case 'CLEAR_CART':
-      return clearCart(state);
+      return clearCart();
     default:
       return state;
   }
@@ -93,7 +92,11 @@ const cartReducer = (state = {}, action) => {
 const CartContext = React.createContext();
 
 export const CartProvider = ({ currency = 'USD', children = null }) => {
-  const [cart, dispatch] = useReducer(cartReducer, initialCartValues);
+  const [cart, dispatch] = useLocalStorageReducer(
+    'cart',
+    cartReducer,
+    initialCartValues
+  );
 
   const contextValue = useMemo(
     () => [

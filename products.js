@@ -1,12 +1,12 @@
 const products = [
     {
         sku: '001',
-        name: 'POD BLVK UNICORN UNICIIG 300PUFF MANGO ICE 5% NIC',
+        name: 'POD BLVK  300PUFF MANGO ICE 5% NIC',
         price: 2999,
         image: '/vapes/vape-300puff-mango-ice.jpg',
         rating: {
             count: 85,
-            rate: 4.5,
+            rate: 4.0,
         },
     },
     {
@@ -15,8 +15,8 @@ const products = [
         price: 4999,
         image: '/vapes/vape-800puff-lyche-ice.jpg',
         rating: {
-            count: 85,
-            rate: 4.5,
+            count: 21,
+            rate: 2.5,
         },
     },
     {
@@ -25,8 +25,8 @@ const products = [
         price: 9999,
         image: '/vapes/pod-1500puff-blue-razz-ice.jpg',
         rating: {
-            count: 85,
-            rate: 4.5,
+            count: 35,
+            rate: 5.0,
         },
     },
 ];
