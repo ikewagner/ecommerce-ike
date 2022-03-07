@@ -28,19 +28,19 @@ const Success = () => {
         <div className="container xl:max-w-screen-xl mx-auto py-12 px-6 text-center">
             {error ? (
                 <div className="p-2 rounded-md bg-rose-100 text-rose-500 max-w-md mx-auto">
-                    <p className="text-lg">Sorry, something went wrong!</p>
+                    <p className="text-lg">Desculpe, algo deu errado!</p>
                 </div>
             ) : !data ? (
                 <div className="p-2 rounded-md bg-gray-100 text-gray-500 max-w-md mx-auto">
-                    <p className="text-lg animate-pulse">Loading...</p>
+                    <p className="text-lg animate-pulse">Carregando...</p>
                 </div>
             ) : (
                 <div className="py-4 px-8 rounded-md bg-gray-100 max-w-lg mx-auto">
                   <h2 className="text-4xl font-semibold flex flex-col items-center space-x-1">
                         <CheckIcon className="w-12 h-12 flex-shrink-0 text-green-600" />
-                        <span>Thanks for your order!</span>
+                        <span>Obrigado pelo seu pedido!</span>
                     </h2>
-                    <p className="text-lg mt-3">Check your inbox for the receipt.</p>
+                    <p className="text-lg mt-3">Verifique sua caixa de entrada para o recibo.</p>
                 </div>
             )}
         </div>

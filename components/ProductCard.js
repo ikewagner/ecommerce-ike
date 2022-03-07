@@ -17,7 +17,7 @@ const ProductCard = props => {
     event.preventDefault();
 
     setAdding(true);
-    toastId.current = toast.loading('Adding 1 item...');
+    
 
     if (typeof props.onClickAdd === 'function') {
       props.onClickAdd();
@@ -34,9 +34,6 @@ const ProductCard = props => {
 
     if (adding) {
       setAdding(false);
-      toast.success(`${props.name} added`, {
-        id: toastId.current,
-      });
     }
 
     if (typeof props.onAddEnded === 'function') {
@@ -48,7 +45,7 @@ const ProductCard = props => {
     <Link href={`/products/${props.id}`}>
       <a className="border rounded-md p-6 group">
         {/* Product's image */}
-        <div className="relative w-full h-64 group-hover:transform group-hover:scale-125 group-hover:ease-in-out group-hover:duration-500">
+        <div className="relative w-full h-64">
           <Image
             src={props.image}
             alt={props.name}
@@ -66,7 +63,7 @@ const ProductCard = props => {
         {/* Price + CTA */}
         <div className="mt-4 flex items-center justify-between space-x-2">
           <div>
-            <p className="text-gray-500">Price</p>
+            <p className="text-gray-500">Preço</p>
             <p className="text-lg font-semibold">
               {formatCurrency(props.price, props.currency)}
             </p>
@@ -82,7 +79,7 @@ const ProductCard = props => {
                 : 'disabled:hover:bg-transparent disabled:hover:text-current disabled:hover:border-gray-200'
             }`}
           >
-            {adding ? 'Adding...' : 'Add to cart'}
+            Adiconar
           </button>
         </div>
       </a>

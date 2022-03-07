@@ -6,7 +6,7 @@ import Link from 'next/link';
      <a className="flex items-center space-x-2">
        <Image src="/vape.png" alt="Logo" width={32} height={32} />
        <span className="hidden sm:inline-block font-extrabold text-3xl text-gray-700">
-         ike Shop
+         vape Shop
        </span>
      </a>
    </Link>

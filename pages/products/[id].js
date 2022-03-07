@@ -42,14 +42,14 @@ const Product = props => {
   return router.isFallback ? (
     <>
       <Head>
-        <title>Loading...</title>
+        <title>Carregando...</title>
       </Head>
-      <p className="text-center text-lg py-12">Loading...</p>
+      <p className="text-center text-lg py-12">Carregando...</p>
     </>
   ) : (
     <>
       <Head>
-        <title>{props.name} | AlterClass</title>
+        <title>{props.name}</title>
       </Head>
       <div className="container lg:max-w-screen-lg mx-auto py-12 px-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-12">
@@ -67,13 +67,12 @@ const Product = props => {
           <div className="flex-1 max-w-md border border-opacity-50 rounded-md shadow-lg p-6">
             <h2 className="text-3xl font-semibold">{props.name}</h2>
             <p>
-              <span className="text-gray-500">Availability:</span>{' '}
-              <span className="font-semibold">In stock</span>
+              <span className="font-semibold">Em Estoque</span>
             </p>
 
             {/* Price */}
             <div className="mt-8 border-t pt-4">
-              <p className="text-gray-500">Price:</p>
+              <p className="text-gray-500">Preço:</p>
               <p className="text-xl font-semibold">
                 {formatCurrency(props.price)}
               </p>
@@ -81,7 +80,7 @@ const Product = props => {
 
             <div className="mt-4 border-t pt-4">
               {/* Quantity */}
-              <p className="text-gray-500">Quantity:</p>
+              <p className="text-gray-500">Quatidade:</p>
               <div className="mt-1 flex items-center space-x-3">
                 <button
                   onClick={() => setQty(prev => prev - 1)}
@@ -106,7 +105,7 @@ const Product = props => {
                 disabled={adding}
                 className="mt-8 border rounded py-2 px-6 bg-rose-500 hover:bg-rose-600 border-rose-500 hover:border-rose-600 focus:ring-4 focus:ring-opacity-50 focus:ring-rose-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Add to cart ({qty})
+                Adicionar ({qty})
               </button>
             </div>
           </div>
@@ -122,7 +121,6 @@ export async function getStaticPaths() {
     paths: Object.keys(products)?.map(id => ({
       params: { id },
     })),
-    // Enable statically generating additional pages
     fallback: true,
   };
 }
@@ -133,10 +131,8 @@ export async function getStaticProps({ params }) {
 
     return {
       props,
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every second
-      revalidate: 1, // In seconds
+
+      revalidate: 1, 
     };
   } catch (error) {
     return { notFound: true };
