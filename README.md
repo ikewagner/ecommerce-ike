@@ -12,3 +12,4 @@ Esta é uma loja de comércio eletrônico totalmente funcional que usa Next.js +
 * Vercel
 
 
+Criado com muito ❤️ por Henrique Wagner
