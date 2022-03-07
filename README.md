@@ -7,7 +7,7 @@ Esta é uma loja de comércio eletrônico totalmente funcional que usa Next.js +
 ## Tecnologias
 
 * Next.js + Tailwind CSS
-* localStorage to persist user session
+* localStorage para persistir a sessão do usuário
 * Stripe
 * Vercel
 
