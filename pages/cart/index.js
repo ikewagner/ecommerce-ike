@@ -37,7 +37,7 @@ const Cart = () => {
   return (
     <>
       <Head>
-        <title>My Shopping Cart | AlterClass</title>
+        <title>Meu carrinho | IKE Sneakers</title>
       </Head>
       <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
         {cartCount > 0 ? (
@@ -59,7 +59,7 @@ const Cart = () => {
               Seu carrinho de compras está vazio.
             </h2>
             <p className="mt-1 text-xl">
-              Confira nossos Vapes incríveis{' '}
+              Confira nossos Sneakers incríveis{' '}
               <Link href="/">
                 <a className="text-red-500 underline">Aqui!</a>
               </Link>

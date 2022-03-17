@@ -4,9 +4,9 @@ import Link from 'next/link';
  const Logo = () => (
    <Link href="/">
      <a className="flex items-center space-x-2">
-       <Image src="/vape.png" alt="Logo" width={32} height={32} />
+       <Image src="/sneakers.png" alt="Logo" width={32} height={32} />
        <span className="hidden sm:inline-block font-extrabold text-3xl text-gray-700">
-         vape Shop
+        IKE Sneakers
        </span>
      </a>
    </Link>
