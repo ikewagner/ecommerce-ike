@@ -12,10 +12,10 @@ const products = [
     },
     {
         id: 'price_1KYyQ4C97XWumhGre1I1CLIz',
-        name: 'POD BLVK UNICORN UNICIIG 300PUFF MANGO ICE',
-        price: 2999,
+        name: 'LEBRON XIX MINNEAPOLIS LAKERS',
+        price: 129999,
         currency: 'BRL',
-        image: '/vapes/vape-300puff-mango-ice.jpg',
+        image: '/sneakers/sneakers2.png',
         rating: {
           count: 85,
           rate: 4.5,
